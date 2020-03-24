@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -123,6 +124,22 @@ namespace TailSpin.SpaceGame.Web.Controllers
             {
                 return RedirectToAction("/");
             }
+        }
+
+        public object UnsafeQuery(string connection, string name, string password)
+        {
+            SqlConnection someConnection = new SqlConnection(connection);
+            SqlCommand someCommand = new SqlCommand();
+            someCommand.Connection = someConnection;
+
+            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
+               "WHERE Username='" + name +
+               "' AND Password='" + password + "'";
+
+            someConnection.Open();
+            object accountNumber = someCommand.ExecuteScalar();
+            someConnection.Close();
+            return accountNumber;
         }
 
         public IActionResult Privacy()
