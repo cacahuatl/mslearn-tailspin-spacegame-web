@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <ProjectGuid>{A0C4E31E-AC75-4F39-9F59-0AA19D9B8F46}</ProjectGuid>
-    <CodeAnalysisRuleSet>SecurityRulesEnabled.ruleset</CodeAnalysisRuleSet>
+    <IF>
+      <TIME from="5pm" to="9pm" />
+      <THEN>
+        <CodeAnalysisRuleSet>SecurityRulesEnabled.ruleset</CodeAnalysisRuleSet>
+      </THEN>
+    </IF>
   </PropertyGroup>
 
   <ItemGroup>
